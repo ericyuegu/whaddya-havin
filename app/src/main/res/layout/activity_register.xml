@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:background="@drawable/gradient">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Name"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Name"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textColorHint="#fff"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Age"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textColor="#fff"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Age"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Username"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textColor="#fff"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Username"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textSize="16dp"
+        android:textColor="#fff"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repeat Password"
+        android:textSize="16dp"
+        android:textColor="#fff"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RepeatPassword"
+        android:inputType="textPassword"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/bRegister"
+        android:layout_gravity="center"
+        android:background="@drawable/buttonstyleselector"
+        android:textColor="#fff"/>
+
+
+</LinearLayout>
