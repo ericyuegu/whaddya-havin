@@ -1,11 +1,15 @@
 package com.ericyuegu.whaddyahavin.auth;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by ericgu on 9/5/18.
@@ -37,8 +42,43 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
+            final FirebaseUser user = auth.getCurrentUser();
+
+            if (!user.isEmailVerified()) { // user not verified yet
+                AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
+                alert.setTitle("Verify Email");
+                alert.setMessage("Must verify account first! Link sent to your email.");
+                alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to execute after dialog closed
+                        user.sendEmailVerification().addOnCompleteListener(LoginActivity.this, new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(LoginActivity.this,
+                                            "Verification email sent to " + user.getEmail(),
+                                            Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Log.e("MainActivity", "sendEmailVerification", task.getException());
+                                    Toast.makeText(LoginActivity.this,
+                                            "Failed to send verification email. Ensure email is valid.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        auth.signOut();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    }
+                });
+                alert.show();
+                alert.getButton(Dialog.BUTTON_POSITIVE).setTextColor(0xFF0097A7);
+            } else { // user is verified -- allow login
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+
+
         }
 
         // set the view now
@@ -103,9 +143,44 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    final FirebaseUser user = auth.getCurrentUser();
+
+                                    if (!user.isEmailVerified()) { // user not verified yet
+                                        AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
+                                        alert.setTitle("Verify Email");
+                                        alert.setMessage("Must verify account first! Link sent to your email.");
+                                        alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Write your code here to execute after dialog closed
+                                                user.sendEmailVerification().addOnCompleteListener(LoginActivity.this, new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(LoginActivity.this,
+                                                                    "Verification email sent to " + user.getEmail(),
+                                                                    Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            Log.e("MainActivity", "sendEmailVerification", task.getException());
+                                                            Toast.makeText(LoginActivity.this,
+                                                                    "Failed to send verification email. Ensure email is valid.",
+                                                                    Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+                                                auth.signOut();
+                                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                finish();
+                                            }
+                                        });
+                                        alert.show();
+                                        alert.getButton(Dialog.BUTTON_POSITIVE).setTextColor(0xFF0097A7);
+                                    } else { // user is verified -- allow login
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        finish();
+                                    }
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    startActivity(intent);
+//                                    finish();
                                 }
                             }
                         });
