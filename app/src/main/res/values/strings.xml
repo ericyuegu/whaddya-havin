@@ -4,6 +4,10 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_reset_password">Reset Password</string>
+    <string name="title_activity_take_photo">Take Photo</string>
+    <string name="title_activity_view_meal">View Meal</string>
+    <string name="title_activity_main">Whaddya Havin</string>
 
     <!-- Strings related to registration & login -->
     <string name="action_login">Sign in or register</string>
@@ -33,7 +37,6 @@
     <string name="send_password_reset_email">Send Password reset email</string>
     <string name="remove_user">Remove user</string>
     <string name="new_pass">New Password</string>
-    <string name="title_activity_reset_password">ResetPasswordActivity</string>
     <string name="btn_forgot_password">Forgot your password?</string>
     <string name="btn_reset_password">Reset Password</string>
     <string name="btn_back"><![CDATA[<< Back]]></string>

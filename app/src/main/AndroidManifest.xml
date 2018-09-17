@@ -10,6 +10,13 @@
     <!-- To make network calls -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To use the camera -->
+    <uses-feature android:name="android.hardware.CAMERA"
+        android:required="true" />
+
+    <!-- To save photos on device in public external storage (accessible to user & other apps) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,12 +40,27 @@
         </activity>
         <activity
             android:name=".auth.ResetPasswordActivity"
-            android:label="Reset Password"
+            android:label="@string/title_activity_reset_password"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_register"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".TakePhotoActivity"
+            android:label="@string/title_activity_take_photo"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ViewMealActivity"
+            android:label="@string/title_activity_view_meal"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
