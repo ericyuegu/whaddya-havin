@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             if (!user.isEmailVerified()) { // user not verified yet
                 AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
                 alert.setTitle("Verify Email");
-                alert.setMessage("Must verify account first! Link sent to your email.");
+                alert.setMessage("Please verify your account! A link has been sent to your email.");
                 alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // Write your code here to execute after dialog closed
@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (!user.isEmailVerified()) { // user not verified yet
                                         AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
                                         alert.setTitle("Verify Email");
-                                        alert.setMessage("Please verify your account! Link has been sent to your email.");
+                                        alert.setMessage("Please verify your account! A link has been sent to your email.");
                                         alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 // Write your code here to execute after dialog closed
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     }
                                                 });
                                                 auth.signOut();
-                                                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                                                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
                                                 finish();
                                             }
                                         });
