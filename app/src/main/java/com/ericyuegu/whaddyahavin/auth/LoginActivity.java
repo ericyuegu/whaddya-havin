@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ericyuegu.whaddyahavin.MainActivity;
 import com.ericyuegu.whaddyahavin.ProfileActivity;
 import com.ericyuegu.whaddyahavin.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,43 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
-            final FirebaseUser user = auth.getCurrentUser();
-
-            if (!user.isEmailVerified()) { // user not verified yet
-                AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
-                alert.setTitle("Verify Email");
-                alert.setMessage("Please verify your account! A link has been sent to your email.");
-                alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Write your code here to execute after dialog closed
-                        user.sendEmailVerification().addOnCompleteListener(LoginActivity.this, new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this,
-                                            "Verification email sent to " + user.getEmail(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Log.e("ProfileActivity", "sendEmailVerification", task.getException());
-                                    Toast.makeText(LoginActivity.this,
-                                            "Failed to send verification email. Ensure email is valid.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                        auth.signOut();
-                        startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
-                        finish();
-                    }
-                });
-                alert.show();
-                alert.getButton(Dialog.BUTTON_POSITIVE).setTextColor(0xFF0097A7);
-            } else { // user is verified -- allow login
-                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
-                finish();
-            }
-
-
+            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+            finish();
         }
 
         // set the view now
@@ -178,9 +144,8 @@ public class LoginActivity extends AppCompatActivity {
                                         startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                                         finish();
                                     }
-//                                    Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
-//                                    startActivity(intent);
-//                                    finish();
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
                                 }
                             }
                         });
