@@ -31,8 +31,12 @@
     <string name="btn_link_to_register">Not a member? Register now!</string>
     <string name="btn_link_to_login">Already registered. Log in here!</string>
 
+    <!-- Strings related to take photo -->
+    <string name="use_camera">Use Whaddya Havin\'s Camera</string>
+    <string name="subtext">Take photos with the Whaddya Havin app.</string>
+    <string name="turn_on">Turn On</string>
+
     <!-- Strings related to profile -->
-    <string name="go_home">Go Home</string>
     <string name="change_email">Change Email</string>
     <string name="change_password">Change Password</string>
     <string name="send_password_reset_email">Send Password reset email</string>
@@ -50,4 +54,7 @@
     <!-- Forgot password -->
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">Enter your email below for password reset instructions.</string>
+
+    <!-- View meal -->
+    <string name="meal_image">Image of meal taken by user</string>
 </resources>

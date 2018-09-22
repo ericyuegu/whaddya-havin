@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
                 if (x1 < x2) {
                     startActivity(new Intent(MainActivity.this, TakePhotoActivity.class));
                 }
+                if (x1 > x2) {
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                }
                 break;
         }
         return false;

@@ -11,10 +11,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To use the camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.CAMERA"
         android:required="true" />
 
     <!-- To save photos on device in public external storage (accessible to user & other apps) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -66,7 +68,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.ericyuegu.whaddyahavin.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
