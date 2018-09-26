@@ -6,16 +6,29 @@
     android:background="@color/white"
     android:gravity="center_vertical">
 
+
     <TextView
         android:id="@+id/text_view_main"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="View Meal Activity" />
+        android:layout_width="match_parent"
+        android:text="View Meal Activity"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        />
 
     <ImageView
         android:id="@+id/meal_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/meal_image"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/meal_desc"
+        android:text="this will be the decription of the meal "
+        android:textSize="20sp" />
 </LinearLayout>

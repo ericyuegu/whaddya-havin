@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="50dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/nameLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameEditText"
+        android:singleLine="true"
+        android:hint="Meal Name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:id="@+id/meal_image"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/mealdescripLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mealdescripEditText"
+            android:hint="Meal description"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choosebtn"
+            android:text="CHOOSE MEAL"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/savebtn"
+            android:text="SAVE MEAL"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

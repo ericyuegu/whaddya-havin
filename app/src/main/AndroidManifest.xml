@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <!-- To make network calls -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -38,6 +42,11 @@
         <activity
             android:name=".auth.RegisterActivity"
             android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".SaveMealActivity"
+            android:label="Save Meal"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity

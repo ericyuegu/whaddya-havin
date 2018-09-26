@@ -4,15 +4,17 @@ public class Meal {
     private String title;
     private String desc;
     private String image;
+    private String imageUrl;
 
     public  Meal() {
-
+        //emptry constructor
     }
 
-    public Meal(String title, String desc, String image) {
+    public Meal(String title, String desc, String imageUrl) {
         this.title = title;
         this.desc = desc;
-        this.image = image;
+        //this.image = image;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -37,5 +39,13 @@ public class Meal {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
