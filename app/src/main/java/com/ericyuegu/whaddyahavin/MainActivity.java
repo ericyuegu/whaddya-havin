@@ -10,9 +10,6 @@ import android.view.MotionEvent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
-import android.widget.AdapterView;
-
-import com.ericyuegu.whaddyahavin.auth.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

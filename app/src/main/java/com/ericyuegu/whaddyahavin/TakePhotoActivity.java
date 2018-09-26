@@ -3,13 +3,11 @@ package com.ericyuegu.whaddyahavin;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -17,16 +15,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -41,6 +36,9 @@ public class TakePhotoActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
     public static final String ALLOW_KEY = "ALLOWED";
     public static final String CAMERA_PREF = "camera_pref";
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private String pathToFile;
+    //private Uri photoURI;
 
     float x1, x2, y1, y2;
 
@@ -68,8 +66,31 @@ public class TakePhotoActivity extends AppCompatActivity {
             }
         } else {
             Log.d("CAMERA_PERMISSION", "Permission granted, dispatching take picture intent.");
-            dispatchTakePictureIntent();
-            finish();
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create a file to store the image
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                    System.out.println("photoFile: " + photoFile);
+                } catch (IOException ex) {
+                    // TODO: Handle error while creating file
+                }
+                if (photoFile != null) {
+                    System.out.println("123321");
+                    pathToFile = photoFile.getAbsolutePath();
+                    Uri photoURI = FileProvider.getUriForFile(TakePhotoActivity.this,
+                            this.getApplicationContext().getPackageName() + ".fileprovider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                Bundle mBundle = new Bundle();
+//                mBundle.putString("photo_uri", photoURI.toString());
+//                takePictureIntent.putExtras(mBundle);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
         }
 
     }
@@ -198,10 +219,6 @@ public class TakePhotoActivity extends AppCompatActivity {
         super.onResume();
     }
 
-
-    private static final int REQUEST_IMAGE_CAPTURE = 1034;
-    private Uri photoURI;
-
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -211,11 +228,12 @@ public class TakePhotoActivity extends AppCompatActivity {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
+                System.out.println("photoFile: " + photoFile);
             } catch (IOException ex) {
                 // TODO: Handle error while creating file
             }
             if (photoFile != null) {
-                photoURI = FileProvider.getUriForFile(TakePhotoActivity.this,
+                Uri photoURI = FileProvider.getUriForFile(TakePhotoActivity.this,
                         this.getApplicationContext().getPackageName() + ".fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -246,13 +264,19 @@ public class TakePhotoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("1111111111");
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 Log.d("IMAGE_CAPTURED", "Image captured at end of camera intent.");
                 Log.d("INTENT DATA", "Data: " + data);
                 if (resultCode == Activity.RESULT_OK) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
                     Intent passImage = new Intent(TakePhotoActivity.this, ViewMealActivity.class);
-                    passImage.putExtra("photo_uri", photoURI);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    passImage.putExtra("photo_uri", byteArray);
+                    //passImage.putExtra("photo_uri", "hi");
                     startActivity(passImage);
                 } else if (resultCode == Activity.RESULT_CANCELED) {
                     // User cancels taking the picture
