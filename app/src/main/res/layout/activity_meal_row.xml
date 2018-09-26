@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:gravity="center_vertical">
-
-    <TextView
-        android:id="@+id/text_view_main"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="View Meal Activity" />
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="30dp" >
 
     <TextView
         android:id="@+id/name"
@@ -43,4 +42,4 @@
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher" />
 
-</LinearLayout>
+</RelativeLayout>
