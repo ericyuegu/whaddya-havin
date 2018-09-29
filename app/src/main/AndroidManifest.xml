@@ -47,7 +47,7 @@
         <activity
             android:name=".SaveMealActivity"
             android:label="Save Meal"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".TakePhotoActivity" >
         </activity>
         <activity
             android:name=".auth.ResetPasswordActivity"
@@ -67,7 +67,7 @@
         <activity
             android:name=".ViewMealActivity"
             android:label="@string/title_activity_view_meal"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".MainActivity"

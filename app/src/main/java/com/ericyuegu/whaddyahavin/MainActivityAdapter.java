@@ -77,7 +77,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                Bitmap scaled = Bitmap.createScaledBitmap(bmp, 150, 150, false);
+                Bitmap scaled = Bitmap.createScaledBitmap(bmp, 300, 300, false);
                 viewHolder.meal_image.setImageBitmap(scaled);
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -88,9 +88,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
             }
         });
 
-        viewHolder.tags.setText(meal.getTags());
+//        viewHolder.tags.setText(meal.getTags());
         viewHolder.name.setText(meal.getMealName());
-        viewHolder.description.setText(meal.getDescription());
+//        viewHolder.description.setText(meal.getDescription());
         viewHolder.timestamp.setText(meal.getTimestamp());
 
     }

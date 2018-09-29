@@ -2,12 +2,10 @@ package com.ericyuegu.whaddyahavin;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,10 +32,10 @@ public class ViewMealActivity extends AppCompatActivity {
             timestamp.setText(bundle.getString("timestamp"));
 
             TextView tags = this.findViewById(R.id.tags);
-            tags.setText(bundle.getString("tags"));
+            tags.setText("Tag: " + bundle.getString("tags"));
 
             TextView description = this.findViewById(R.id.description);
-            description.setText(bundle.getString("description"));
+            description.setText("Description: " + bundle.getString("description"));
 
             final ImageView mealImg = this.findViewById(R.id.meal_image);
 
