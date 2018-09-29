@@ -265,16 +265,20 @@ public class TakePhotoActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         System.out.println("1111111111");
+        System.out.println("Request Code: " + requestCode);
+        System.out.println("Result Code: " + resultCode);
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 Log.d("IMAGE_CAPTURED", "Image captured at end of camera intent.");
                 Log.d("INTENT DATA", "Data: " + data);
                 if (resultCode == Activity.RESULT_OK) {
+                    System.out.println("in this condition");
                     Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
-                    Intent passImage = new Intent(TakePhotoActivity.this, ViewMealActivity.class);
+                    Intent passImage = new Intent(TakePhotoActivity.this, SaveMealActivity.class);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     byte[] byteArray = stream.toByteArray();
+                    System.out.println(byteArray);
                     passImage.putExtra("photo_uri", byteArray);
                     //passImage.putExtra("photo_uri", "hi");
                     startActivity(passImage);

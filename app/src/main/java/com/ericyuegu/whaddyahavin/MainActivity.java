@@ -2,25 +2,44 @@ package com.ericyuegu.whaddyahavin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Meal> myMeals = new ArrayList<>();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser user;
     float x1, x2, y1, y2;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +66,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Meal meal = myMeals.get(position);
-                Toast.makeText(getApplicationContext(), meal.getName() + " is selected!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), meal.getMealName() + " is selected!", Toast.LENGTH_SHORT).show();
                 Intent viewMealIntent = new Intent(MainActivity.this, ViewMealActivity.class);
-                viewMealIntent.putExtra("mealName", meal.getName());
+                viewMealIntent.putExtra("mealName", meal.getMealName());
                 viewMealIntent.putExtra("timestamp", meal.getTimestamp());
-                viewMealIntent.putExtra("photoUrl", meal.getUrl());
-
-                for (int i = 0; i < meal.getTags().size(); i++) {
-                    String tagName = "tag" + i;
-                    viewMealIntent.putExtra(tagName, meal.getTags().get(i));
-                }
+                viewMealIntent.putExtra("photoUrl", meal.getPhotoUrl());
+                viewMealIntent.putExtra("tags", meal.getTags());
+                viewMealIntent.putExtra("description", meal.getDescription());
 
                 startActivity(viewMealIntent);
             }
@@ -70,17 +86,37 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         displayMeals();
-        System.out.println(myMeals);
     }
 
     private void displayMeals() {
-        for (int i = 0; i < 10; i++) {
-            ArrayList<String> tags = new ArrayList<String>(Arrays.asList("Food", "Sugar", "Items"));
-            Meal meal = new Meal("Pancakes", "2018-09-25", tags, "download.jpeg");
-            myMeals.add(meal);
-        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
-        mAdapter.notifyDataSetChanged();
+        CollectionReference docRef = db.collection("users").document(user.getEmail()).collection("meals");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot query = task.getResult();
+
+                    if (query != null) {
+                        ArrayList<DocumentSnapshot> documents = new ArrayList<DocumentSnapshot>(query.getDocuments());
+
+                        for (DocumentSnapshot doc : documents) {
+                            Meal meal = doc.toObject(Meal.class);
+                            myMeals.add(meal);
+                        }
+
+                        mAdapter.notifyDataSetChanged();
+
+                    } else {
+                        Log.d(TAG, "Invalid query");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
     }
 
 

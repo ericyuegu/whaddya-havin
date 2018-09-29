@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
@@ -33,18 +33,11 @@ public class ViewMealActivity extends AppCompatActivity {
             TextView timestamp = this.findViewById(R.id.timestamp);
             timestamp.setText(bundle.getString("timestamp"));
 
-            String tagStr = "";
-
-            for (String key : bundle.keySet()) {
-
-                if (key.contains("tag")) {
-                    String tag = bundle.getString(key);
-                    tagStr += tag + ", ";
-                }
-            }
-
             TextView tags = this.findViewById(R.id.tags);
-            tags.setText(tagStr.substring(0, tagStr.length() - 2));
+            tags.setText(bundle.getString("tags"));
+
+            TextView description = this.findViewById(R.id.description);
+            description.setText(bundle.getString("description"));
 
             final ImageView mealImg = this.findViewById(R.id.meal_image);
 

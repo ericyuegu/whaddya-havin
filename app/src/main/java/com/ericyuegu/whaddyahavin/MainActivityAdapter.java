@@ -29,7 +29,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     // you provide access to all the views for a data item in a view holder
     public static class MainActivityViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView name, timestamp, tags;
+        public TextView name, timestamp, tags, description;
         public ImageView meal_image;
         public MainActivityViewHolder(View v) {
             super(v);
@@ -37,6 +37,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
             timestamp = (TextView) v.findViewById(R.id.timestamp);
             meal_image = (ImageView) v.findViewById(R.id.meal_image);
             tags = (TextView) v.findViewById(R.id.tags);
+            description = (TextView) v.findViewById(R.id.description);
 
         }
     }
@@ -69,7 +70,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         user = FirebaseAuth.getInstance().getCurrentUser();
         storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference pathRef = storageRef.child(meal.getUrl());
+        StorageReference pathRef = storageRef.child(meal.getPhotoUrl());
 
         final long ONE_MEGABYTE = 1024 * 1024;
         pathRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -87,14 +88,9 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
             }
         });
 
-        String tagStr = "";
-
-        for (String tag : meal.getTags()) {
-            tagStr += tag + ", ";
-        }
-
-        viewHolder.tags.setText(tagStr.substring(0, tagStr.length() - 2));
-        viewHolder.name.setText(meal.getName());
+        viewHolder.tags.setText(meal.getTags());
+        viewHolder.name.setText(meal.getMealName());
+        viewHolder.description.setText(meal.getDescription());
         viewHolder.timestamp.setText(meal.getTimestamp());
 
     }

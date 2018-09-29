@@ -1,40 +1,48 @@
 package com.ericyuegu.whaddyahavin;
 
-import java.util.ArrayList;
-
 public class Meal {
 
-    private String name, timestamp, url;
-    private ArrayList<String> tags;
+    private String mealName, timestamp, tags, photoUrl, description;
 
-    public Meal(String name, String timestamp, ArrayList<String> tags, String url) {
-        this.name = name;
+    public Meal() { }
+
+    public Meal(String mealName, String timestamp, String tags, String photoUrl, String description) {
+        this.mealName = mealName;
         this.timestamp = timestamp;
         this.tags = tags;
-        this.url = url;
+        this.photoUrl = photoUrl;
+        this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getMealName() {
+        return mealName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMealName(String name) {
+        this.mealName = name;
     }
 
     public String getTimestamp() {
         return timestamp;
     }
 
-    public ArrayList<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setList(ArrayList<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
-    public String getUrl() { return url; }
+    public String getPhotoUrl() { return photoUrl; }
 
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    @Override
+    public String toString() {
+        return getMealName() + "; " + getTimestamp() + "; " + getTags() + "; " + getPhotoUrl() + "; " + getDescription();
+    }
 }
 

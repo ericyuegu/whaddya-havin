@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:gravity="center_vertical">
-
-    <TextView
-        android:id="@+id/text_view_main"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="View Meal Activity" />
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="35dp">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
 
     <TextView
@@ -27,20 +22,42 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name" />
 
+    <ImageView
+        android:id="@+id/meal_image"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
+
     <TextView
         android:id="@+id/tags"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
+        android:textSize="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white"
-        android:layout_below="@id/timestamp" />
+        android:layout_below="@id/meal_image" />
 
-    <ImageView
-        android:id="@+id/meal_image"
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/name"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/ic_launcher" />
+    <View
+        android:id="@+id/bar"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:layout_below="@id/bar" />
+
 
 </LinearLayout>
