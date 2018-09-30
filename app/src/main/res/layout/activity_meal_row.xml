@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:paddingBottom="22dp"
+    android:paddingBottom="12dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="8dp">
@@ -35,18 +35,15 @@
                 android:paddingBottom="4dp"/>
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:scaleType="centerCrop"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
                 android:id="@+id/meal_image"/>
             
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/colorSecondary"
                 android:id="@+id/name"
                 android:background="@color/colorPrimary"
