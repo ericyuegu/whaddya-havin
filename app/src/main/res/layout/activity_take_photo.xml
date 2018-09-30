@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".TakePhotoActivity">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/text_view_use_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:ellipsize="end"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/use_camera" />
+
+    <TextView
+        android:id="@+id/text_view_subtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/text_view_use_camera"
+        android:ellipsize="end"
+        android:textColor="@color/platinum"
+        android:textSize="13sp"
+        android:text="@string/subtext" />
+
+    <TextView
+        android:id="@+id/order_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/text_view_subtext"
+        android:textColor="@color/html"
+        android:textSize="15sp"
+        android:text="@string/turn_on" />
+
+</RelativeLayout>

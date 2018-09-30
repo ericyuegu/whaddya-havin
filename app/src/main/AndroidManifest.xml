@@ -6,15 +6,21 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <!-- To make network calls -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To use the camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.CAMERA"
         android:required="true" />
 
     <!-- To save photos on device in public external storage (accessible to user & other apps) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -27,7 +33,7 @@
         <activity
             android:name=".auth.LoginActivity"
             android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -37,6 +43,12 @@
             android:name=".auth.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".SaveMealActivity"
+            android:label="Save Meal"
+            android:theme="@style/AppTheme.ActionBar"
+            android:parentActivityName=".TakePhotoActivity" >
         </activity>
         <activity
             android:name=".auth.ResetPasswordActivity"
@@ -56,13 +68,25 @@
         <activity
             android:name=".ViewMealActivity"
             android:label="@string/title_activity_view_meal"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar"
+            android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.ericyuegu.whaddyahavin.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>

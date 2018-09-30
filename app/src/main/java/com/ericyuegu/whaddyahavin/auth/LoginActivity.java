@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ericyuegu.whaddyahavin.MainActivity;
 import com.ericyuegu.whaddyahavin.ProfileActivity;
 import com.ericyuegu.whaddyahavin.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                             "Verification email sent to " + user.getEmail(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Log.e("ProfileActivity", "sendEmailVerification", task.getException());
+                                    Log.e("MainActivity", "sendEmailVerification", task.getException());
                                     Toast.makeText(LoginActivity.this,
                                             "Failed to send verification email. Ensure email is valid.",
                                             Toast.LENGTH_SHORT).show();
@@ -67,18 +68,15 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                         auth.signOut();
-                        startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                         finish();
                     }
                 });
                 alert.show();
                 alert.getButton(Dialog.BUTTON_POSITIVE).setTextColor(0xFF0097A7);
             } else { // user is verified -- allow login
-                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             }
-
-
         }
 
         // set the view now
@@ -148,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (!user.isEmailVerified()) { // user not verified yet
                                         AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
                                         alert.setTitle("Verify Email");
-                                        alert.setMessage("Please verify your account! Link has been sent to your email.");
+                                        alert.setMessage("Must verify account first! Link sent to your email.");
                                         alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 // Write your code here to execute after dialog closed
@@ -160,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                     "Verification email sent to " + user.getEmail(),
                                                                     Toast.LENGTH_SHORT).show();
                                                         } else {
-                                                            Log.e("ProfileActivity", "sendEmailVerification", task.getException());
+                                                            Log.e("MainActivity", "sendEmailVerification", task.getException());
                                                             Toast.makeText(LoginActivity.this,
                                                                     "Failed to send verification email. Ensure email is valid.",
                                                                     Toast.LENGTH_SHORT).show();
@@ -168,17 +166,16 @@ public class LoginActivity extends AppCompatActivity {
                                                     }
                                                 });
                                                 auth.signOut();
-                                                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                                                 finish();
                                             }
                                         });
                                         alert.show();
                                         alert.getButton(Dialog.BUTTON_POSITIVE).setTextColor(0xFF0097A7);
                                     } else { // user is verified -- allow login
-                                        startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         finish();
                                     }
-//                                    Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                                    startActivity(intent);
 //                                    finish();
                                 }

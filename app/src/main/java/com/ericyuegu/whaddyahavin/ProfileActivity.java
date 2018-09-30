@@ -1,15 +1,21 @@
 package com.ericyuegu.whaddyahavin;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -27,7 +33,7 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class ProfileActivity extends AppCompatActivity {
 
-    private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
+    private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnGoHome,
             changeEmail, changePassword, sendEmail, remove, signOut;
 
     private EditText oldEmail, newEmail, password, newPassword;
@@ -35,16 +41,25 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
+    float x1, x2, y1, y2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // inside your activity (if you did not enable transitions in your theme)
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setTitle("Profile Settings");
         setSupportActionBar(toolbar);
 
-        //get firebase auth instance
+        // set an enter/exit transition
+        getWindow().setEnterTransition(new Slide(Gravity.RIGHT));
+        getWindow().setExitTransition(new Slide(Gravity.RIGHT));
+
+        //get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
         //get current user
@@ -92,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (!user.isEmailVerified()) {
             AlertDialog alert = new AlertDialog.Builder(ProfileActivity.this).create();
             alert.setTitle("Verify Email");
-            alert.setMessage("Please verify account! Link sent to your email.");
+            alert.setMessage("Please verify your account! A link has been sent to your email.");
             alert.setButton(Dialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     // Write your code here to execute after dialog closed
@@ -145,7 +160,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(ProfileActivity.this, "Email address is updated. Please sign in with new email id!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ProfileActivity.this, "Email address has been updated. Please sign in with your new email!", Toast.LENGTH_LONG).show();
                                         signOut();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
@@ -189,7 +204,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(ProfileActivity.this, "Password is updated, sign in with new password!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProfileActivity.this, "Password has been updated, please sign in with your new password!", Toast.LENGTH_SHORT).show();
                                             signOut();
                                             progressBar.setVisibility(View.GONE);
                                         } else {
@@ -230,7 +245,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(ProfileActivity.this, "Reset password email is sent!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProfileActivity.this, "Reset password email has been sent!", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
                                         Toast.makeText(ProfileActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
@@ -255,12 +270,12 @@ public class ProfileActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(ProfileActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProfileActivity.this, "Your profile has been deleted :( Create a account now!", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(ProfileActivity.this, RegisterActivity.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
-                                        Toast.makeText(ProfileActivity.this, "Failed to delete your account!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProfileActivity.this, "Failed to delete account", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
@@ -301,5 +316,30 @@ public class ProfileActivity extends AppCompatActivity {
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+    }
+
+    public boolean onTouchEvent(MotionEvent touchEvent) {
+        switch (touchEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchEvent.getX();
+                y1 = touchEvent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchEvent.getX();
+                y2 = touchEvent.getY();
+                if (x1 < x2) {
+                    // Check if we're running on Android 5.0 or higher
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // Apply activity transition
+                        startActivity(new Intent(ProfileActivity.this, MainActivity.class),
+                                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    } else {
+                        // Swap without transition
+                        startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                    }
+                }
+                break;
+        }
+        return false;
     }
 }
