@@ -33,7 +33,7 @@
         <activity
             android:name=".auth.LoginActivity"
             android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,6 +47,7 @@
         <activity
             android:name=".SaveMealActivity"
             android:label="Save Meal"
+            android:theme="@style/AppTheme.ActionBar"
             android:parentActivityName=".TakePhotoActivity" >
         </activity>
         <activity
@@ -67,12 +68,13 @@
         <activity
             android:name=".ViewMealActivity"
             android:label="@string/title_activity_view_meal"
+            android:theme="@style/AppTheme.ActionBar"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar">
         </activity>
 
         <provider
@@ -82,7 +84,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths">
+            </meta-data>
         </provider>
     </application>
 

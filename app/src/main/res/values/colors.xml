@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fffffc</color>
-    <color name="colorPrimaryDark">#171717</color>
-    <color name="colorSecondary">#beb7a4</color>
-    <color name="colorAccent">#ff7f11</color>
-    <color name="centerColor">#664c43</color>
+    <color name="colorPrimary">#EAEBF7</color>
+    <color name="colorPrimaryMedium">#C5BDC8</color>
+    <color name="colorPrimaryDark">#2C0E37</color>
+    <color name="colorSecondary">#AA0362</color>
+    <color name="colorAccent">#DE427A</color>
+    <color name="centerColor">#FE5D26</color>
+    <color name="textHighlightColor">#78657F</color>
 
-    <color name="bg_login">#26ae90</color>
-    <color name="bg_register">#2e3237</color>
-    <color name="bg_main">#428bca</color>
+    <color name="html">#006ABF</color>
     <color name="white">#ffffff</color>
-    <color name="input_login">#222222</color>
-    <color name="input_login_hint">#999999</color>
-    <color name="input_register">#888888</color>
-    <color name="input_register_bg">#3b4148</color>
-    <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#26ae90</color>
-    <color name="btn_login_bg">#eceef1</color>
-    <color name="lbl_name">#333333</color>
-    <color name="btn_logout_bg">#ff6861</color>
+    <color name="platinum">#E0E0E0</color>
+
+    <!--<color name="bg_login">#26ae90</color>-->
+    <!--<color name="bg_register">#2e3237</color>-->
+    <!--<color name="bg_main">#428bca</color>-->
+    <!--<color name="input_login">#222222</color>-->
+    <!--<color name="input_login_hint">#999999</color>-->
+    <!--<color name="input_register">#888888</color>-->
+    <!--<color name="input_register_bg">#3b4148</color>-->
+    <!--<color name="input_register_hint">#5e6266</color>-->
+    <!--<color name="btn_login">#26ae90</color>-->
+    <!--<color name="btn_login_bg">#eceef1</color>-->
+    <!--<color name="lbl_name">#333333</color>-->
+    <!--<color name="btn_logout_bg">#ff6861</color>-->
 </resources>

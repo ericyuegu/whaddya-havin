@@ -2,6 +2,7 @@ package com.ericyuegu.whaddyahavin;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -44,6 +46,9 @@ public class TakePhotoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // inside your activity (if you did not enable transitions in your theme)
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
 
@@ -85,10 +90,11 @@ public class TakePhotoActivity extends AppCompatActivity {
                             this.getApplicationContext().getPackageName() + ".fileprovider",
                             photoFile);
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-//                Bundle mBundle = new Bundle();
-//                mBundle.putString("photo_uri", photoURI.toString());
-//                takePictureIntent.putExtras(mBundle);
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+
+                    ActivityCompat.startActivityForResult(TakePhotoActivity.this,
+                            takePictureIntent,
+                            REQUEST_IMAGE_CAPTURE,
+                            ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 }
             }
         }

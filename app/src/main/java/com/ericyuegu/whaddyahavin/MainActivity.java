@@ -1,6 +1,8 @@
 package com.ericyuegu.whaddyahavin;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +10,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     float x1, x2, y1, y2;
 
     protected void onCreate(Bundle savedInstanceState) {
+        // inside your activity (if you did not enable transitions in your theme)
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -126,10 +134,34 @@ public class MainActivity extends AppCompatActivity {
                 x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
                 if (x1 < x2) {
-                    startActivity(new Intent(MainActivity.this, TakePhotoActivity.class));
+                    // set an enter/exit transition
+                    getWindow().setEnterTransition(new Slide(Gravity.RIGHT));
+                    getWindow().setExitTransition(new Slide(Gravity.RIGHT));
+
+                    // Check if we're running on Android 5.0 or higher
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // Apply activity transition
+                        startActivity(new Intent(MainActivity.this, TakePhotoActivity.class),
+                                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    } else {
+                        // Swap without transition
+                        startActivity(new Intent(MainActivity.this, TakePhotoActivity.class));
+                    }
                 }
                 if (x1 > x2) {
-                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                    // set an enter/exit transition
+                    getWindow().setEnterTransition(new Slide(Gravity.LEFT));
+                    getWindow().setExitTransition(new Slide(Gravity.LEFT));
+
+                    // Check if we're running on Android 5.0 or higher
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // Apply activity transition
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class),
+                                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    } else {
+                        // Swap without transition
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                    }
                 }
                 break;
         }

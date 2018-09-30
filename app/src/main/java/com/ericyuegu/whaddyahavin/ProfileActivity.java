@@ -1,16 +1,21 @@
 package com.ericyuegu.whaddyahavin;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -40,14 +45,21 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // inside your activity (if you did not enable transitions in your theme)
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setTitle("Profile Settings");
         setSupportActionBar(toolbar);
 
-        //get firebase auth instance
+        // set an enter/exit transition
+        getWindow().setEnterTransition(new Slide(Gravity.RIGHT));
+        getWindow().setExitTransition(new Slide(Gravity.RIGHT));
+
+        //get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
         //get current user
@@ -316,7 +328,15 @@ public class ProfileActivity extends AppCompatActivity {
                 x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
                 if (x1 < x2) {
-                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                    // Check if we're running on Android 5.0 or higher
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        // Apply activity transition
+                        startActivity(new Intent(ProfileActivity.this, MainActivity.class),
+                                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    } else {
+                        // Swap without transition
+                        startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                    }
                 }
                 break;
         }

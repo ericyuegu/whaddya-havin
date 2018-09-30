@@ -33,9 +33,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/hint_email"
+                android:textColorHighlight="@color/textHighlightColor"
                 android:inputType="textEmailAddress"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColor="@color/colorSecondary"
+                android:textColorHint="@color/colorSecondary" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -48,9 +49,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/hint_password"
+                android:textColorHighlight="@color/textHighlightColor"
                 android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColor="@color/colorSecondary"
+                android:textColorHint="@color/colorSecondary" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Login Button -->
@@ -84,7 +86,7 @@
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="15dp" />
     </LinearLayout>
 
