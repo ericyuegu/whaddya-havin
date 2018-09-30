@@ -270,7 +270,6 @@ public class TakePhotoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("1111111111");
         System.out.println("Request Code: " + requestCode);
         System.out.println("Result Code: " + resultCode);
         switch (requestCode) {
@@ -287,10 +286,13 @@ public class TakePhotoActivity extends AppCompatActivity {
                     System.out.println(byteArray);
                     passImage.putExtra("photo_uri", byteArray);
                     //passImage.putExtra("photo_uri", "hi");
+                    finish();
                     startActivity(passImage);
                 } else if (resultCode == Activity.RESULT_CANCELED) {
                     // User cancels taking the picture
-                    Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Cancelled!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TakePhotoActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
         }
 
