@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#004d40-->
-    <!--</color>-->
-    <!--&lt;!&ndash;<color name="colorPrimaryDark">#f4511e&ndash;&gt;-->
-    <!--&lt;!&ndash;</color>&ndash;&gt;-->
-    <!--<color name="colorSecondary">#18ffff-->
-
-    <!--</color>-->
-    <!--<color name="colorAccent">#004d40-->
-    <!--</color>-->
-    <!--<color name="textboxcolor">#616161</color>-->
-    <!--<color name="centerColor">#00acc1-->
-
-    <!--</color>-->
-
-    <color name="colorPrimary">#00bcd4</color>
-    <color name="colorPrimaryDark">#0097a7</color>
-    <color name="colorSecondary">#18ffff</color>
-    <color name="colorAccent">#f2fe71</color>
-    <color name="centerColor">#00acc1</color>
+    <color name="colorPrimary">#fffffc</color>
+    <color name="colorPrimaryDark">#171717</color>
+    <color name="colorSecondary">#beb7a4</color>
+    <color name="colorAccent">#ff7f11</color>
+    <color name="centerColor">#664c43</color>
 
     <color name="bg_login">#26ae90</color>
     <color name="bg_register">#2e3237</color>
@@ -32,5 +18,5 @@
     <color name="btn_login">#26ae90</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
-    <color name="btn_logut_bg">#ff6861</color>
+    <color name="btn_logout_bg">#ff6861</color>
 </resources>
