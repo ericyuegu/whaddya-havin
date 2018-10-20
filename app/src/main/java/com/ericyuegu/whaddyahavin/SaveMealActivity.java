@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -146,7 +147,21 @@ public class SaveMealActivity extends AppCompatActivity {
                     System.out.println(query);
 
                     if (query != null) {
-                        final int mealNum = query.getDocuments().size();
+                        int numMeals = query.getDocuments().size();
+                        int maxMealNum = 0;
+
+                        if (numMeals > 0) { // meals have been added (and possibly deleted)
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                if (Integer.parseInt(document.get("mealNum").toString()) > maxMealNum) {
+                                    maxMealNum = Integer.parseInt(document.get("mealNum").toString());
+                                }
+                            }
+                            maxMealNum++; // increment to be next meal key
+                        }
+
+                        final String strNext = Integer.toString(maxMealNum);
+                        System.out.println(strNext);
 
                         HashMap<String, String> uploadMeal = new HashMap<>();
                         uploadMeal.put("mealName", mealName.getText().toString());
@@ -154,19 +169,20 @@ public class SaveMealActivity extends AppCompatActivity {
                         String currentDateandTime = sdf.format(new Date());
                         uploadMeal.put("timestamp", currentDateandTime);
                         uploadMeal.put("tags", mealTags.getText().toString());
-                        uploadMeal.put("photoUrl", user.getEmail() + "-" + mealNum + ".jpeg");
+                        uploadMeal.put("photoUrl", user.getEmail() + "-" + strNext + ".jpeg");
                         uploadMeal.put("description", mealDesc.getText().toString());
+                        uploadMeal.put("mealNum", strNext);
 
                         db.collection("users")
                                 .document(user.getEmail())
                                 .collection("meals")
-                                .document(Integer.toString(mealNum))
+                                .document(strNext)
                                 .set(uploadMeal)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void documentReference) {
                                         System.out.println("Meal was successfully added.");
-                                        uploadToStorage(mealNum);
+                                        uploadToStorage(strNext);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -185,7 +201,7 @@ public class SaveMealActivity extends AppCompatActivity {
 
     }
 
-    public void uploadToStorage(int mealNum) {
+    public void uploadToStorage(String mealNum) {
         StorageReference storageRef = storage.getReference();
         StorageReference mealRef = storageRef.child(user.getEmail() + "-" + mealNum + ".jpeg");
 

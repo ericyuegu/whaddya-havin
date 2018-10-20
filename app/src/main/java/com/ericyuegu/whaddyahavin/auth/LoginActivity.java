@@ -39,11 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance(); // Get Firebase auth instance
 
         if (auth.getCurrentUser() != null) {
-            final FirebaseUser user = auth.getCurrentUser();
+            final FirebaseUser user = auth.getCurrentUser(); // current Firebase user
 
             if (!user.isEmailVerified()) { // user not verified yet
                 AlertDialog alert = new AlertDialog.Builder(LoginActivity.this).create();
