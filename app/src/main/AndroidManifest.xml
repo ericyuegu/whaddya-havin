@@ -22,7 +22,8 @@
     <!-- To save photos on device in public external storage (accessible to user & other apps) -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -76,6 +77,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.ActionBar">
         </activity>
+        <receiver android:name=".Notification_reciever"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

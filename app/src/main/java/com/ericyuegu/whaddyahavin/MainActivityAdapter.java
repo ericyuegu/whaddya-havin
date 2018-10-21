@@ -49,8 +49,7 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MainActivityAdapter.MainActivityViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public MainActivityAdapter.MainActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_meal_row, parent, false);
@@ -95,18 +94,17 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
 
     }
 
-    private void addToRow(MainActivityViewHolder holder, Meal meal, Bitmap bmp) {
-
-
-
-
-    }
-
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
+
+    public List<Meal> getmDataset() {
+        return mDataset;
+    }
+
+
 
 }
 
