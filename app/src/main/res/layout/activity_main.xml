@@ -21,14 +21,14 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="412dp"
+        android:layout_height="530dp"
         android:scrollbars="vertical" />
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp">
 
         <Button style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/delete_meals"
