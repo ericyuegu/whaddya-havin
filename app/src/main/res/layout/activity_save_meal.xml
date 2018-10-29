@@ -12,10 +12,12 @@
     android:paddingRight="16dp"
     android:paddingTop="8dp" >
 
+
     <ImageView
         android:id="@+id/meal_image"
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="20dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:paddingBottom="8dp"
@@ -25,7 +27,8 @@
         android:id="@+id/nameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        android:textColorHint="@color/black" >
 
         <EditText
             android:id="@+id/nameEditText"
@@ -33,29 +36,30 @@
             android:layout_height="wrap_content"
             android:hint="Meal Name"
             android:singleLine="true"
-            android:textColor="@color/colorSecondary"
-            android:textColorHint="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/black" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/mealtagLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tags"
             android:hint="Meal Tags (separate w/ commas)"
-            android:textColor="@color/colorSecondary"
-            android:textColorHint="@color/colorPrimaryDark" />
+            android:textColor="@color/black"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/mealdescripLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black">
 
 
         <EditText
@@ -63,8 +67,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/mealdescripEditText"
                 android:hint="Meal description"
-                android:textColor="@color/colorSecondary"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColor="@color/black" />
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -75,12 +78,16 @@
 
 
             <Button style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
+                android:layout_width="500px"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
                 android:id="@+id/savebtn"
-                android:background="@color/colorAccent"
+                android:background="@drawable/buttonstyle"
                 android:textColor="@color/white"
-                android:text="SAVE MEAL"
+                android:text="Save Meal"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif"
+                android:textSize="18dp"
                 />
     </android.support.design.widget.TextInputLayout>
 
