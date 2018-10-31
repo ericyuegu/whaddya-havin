@@ -77,7 +77,7 @@
         android:background="@color/colorPrimary">
 
         <Button
-            android:id="@+id/sign_up_button"
+            android:id="@+id/btn_login"
             style="?android:textAppearanceSmall"
             android:layout_width="400px"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/sign_up_button"
+            android:layout_below="@+id/btn_login"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="or if you want...."
@@ -107,8 +107,8 @@
             android:id="@+id/button"
             android:layout_width="400px"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/sign_up_button"
-            android:layout_below="@+id/sign_up_button"
+            android:layout_alignStart="@+id/btn_login"
+            android:layout_below="@+id/btn_login"
             android:layout_marginTop="50dp"
             android:background="@drawable/buttonstyle2"
             android:text="@string/sign_in_facebook"

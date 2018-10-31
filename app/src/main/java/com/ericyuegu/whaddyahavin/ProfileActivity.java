@@ -78,20 +78,20 @@ public class ProfileActivity extends AppCompatActivity {
             }
         };
 
-        btnChangeEmail = (Button) findViewById(R.id.change_email_button);
-        btnChangePassword = (Button) findViewById(R.id.change_password_button);
-        btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
-        btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
-        changeEmail = (Button) findViewById(R.id.changeEmail);
-        changePassword = (Button) findViewById(R.id.changePass);
-        sendEmail = (Button) findViewById(R.id.send);
-        remove = (Button) findViewById(R.id.remove);
-        signOut = (Button) findViewById(R.id.sign_out);
+        btnChangeEmail = (Button) findViewById(R.id.change_email_btn);
+        btnChangePassword = (Button) findViewById(R.id.change_pass_btn);
+//        btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_btn);
+        btnRemoveUser = (Button) findViewById(R.id.remove_user_btn);
+//        changeEmail = (Button) findViewById(R.id.changeEmail);
+//        changePassword = (Button) findViewById(R.id.changePass);
+//        sendEmail = (Button) findViewById(R.id.send);
+//        remove = (Button) findViewById(R.id.remove);
+        signOut = (Button) findViewById(R.id.sign_out_btn);
 
-        oldEmail = (EditText) findViewById(R.id.old_email);
-        newEmail = (EditText) findViewById(R.id.new_email);
-        password = (EditText) findViewById(R.id.password);
-        newPassword = (EditText) findViewById(R.id.newPassword);
+//        oldEmail = (EditText) findViewById(R.id.old_email);
+//        newEmail = (EditText) findViewById(R.id.new_email);
+//        password = (EditText) findViewById(R.id.password);
+//        newPassword = (EditText) findViewById(R.id.newPassword);
 
         oldEmail.setVisibility(View.GONE);
         newEmail.setVisibility(View.GONE);
