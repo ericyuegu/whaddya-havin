@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    tools:context=".ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/popupstyle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are you sure you want to
+      Delete this account?"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"/>
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/buttonstyle"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="190dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/buttonstyle3"
+            android:text="@string/btn_delete_account"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:textColor="@color/colorSecondary"/>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
