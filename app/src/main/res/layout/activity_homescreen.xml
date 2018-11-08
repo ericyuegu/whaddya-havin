@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="238dp"
+        android:layout_height="235dp"
         android:contentDescription="Main Spring Roll"
         android:scaleX="1.2"
         android:scaleY="1.2"
@@ -16,27 +16,27 @@
         app:srcCompat="@mipmap/main_photo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="50dp"
         android:fontFamily="@font/roboto_medium"
         android:paddingTop="10dp"
         android:text="Whaddya Havin?"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/description"
         android:layout_width="match_parent"
-        android:layout_height="89dp"
-        android:layout_marginLeft="90dp"
-        android:layout_marginRight="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
         android:fontFamily="@font/roboto_medium"
         android:paddingTop="30dp"
-        android:text="The world's easiest way to keep track of what you eat"
+        android:text="The world's easiest way to keep track of what you eat."
         android:textAlignment="center"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <View
@@ -57,26 +57,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_create_account"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="38dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="30dp"
-                android:text="Create an Account"
-                android:textColor="@color/red"
-                android:textSize="18sp" />
+                android:background="@color/red"
+                android:text="Create Account"
+                android:textColor="@color/white"
+                android:padding="10sp"
+                android:layout_weight="1"/>
 
             <Button
-                android:id="@+id/Sign In"
-                android:layout_width="match_parent"
+                android:id="@+id/btn_sign_in"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="25dp"
                 android:background="@color/red"
-                android:text="Button"
-                android:textColor="@color/white" />
+                android:text="Sign In"
+                android:textColor="@color/white"
+                android:layout_weight="1"/>
         </TableRow>
 
     </LinearLayout>

@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteMeals() {
-        System.out.println("deleting meals");
         showAlert();
 
     }
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             final int intKey = key.intValue();
 
             db.collection("users")
-              .document(user.getEmail())
+              .document(user.getUid())
               .collection("meals")
               .document(strKey)
               .delete()
@@ -247,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void removeFromStorage(int mealNum) {
         StorageReference storageRef = storage.getReference();
-        StorageReference mealRef = storageRef.child(user.getEmail() + "-" + mealNum + ".jpeg");
+        StorageReference mealRef = storageRef.child(user.getUid() + "-" + mealNum + ".jpeg");
 
         mealRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -266,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayMeals() {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        CollectionReference docRef = db.collection("users").document(user.getEmail()).collection("meals");
+        CollectionReference docRef = db.collection("users").document(user.getUid()).collection("meals");
         Query query = docRef.orderBy("timestamp", Query.Direction.DESCENDING);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
