@@ -13,41 +13,34 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageButton;
-import android.view.LayoutInflater;
-import android.widget.PopupWindow;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ericyuegu.whaddyahavin.auth.HomescreenActivity;
 import com.ericyuegu.whaddyahavin.auth.LoginActivity;
-import com.ericyuegu.whaddyahavin.auth.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,7 +50,7 @@ import java.util.Map;
 public class ProfileActivity extends AppCompatActivity {
 
     private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnGoHome,
-            changeEmail, changePassword, sendEmail, remove, signOut, btnChangeDiet;
+            changeEmail, changePassword, sendEmail, remove, signOut, btnChangeDiet, btnMealRec;
 
     private EditText oldEmail, newEmail, password, newPassword;
     private ProgressBar progressBar;
@@ -111,6 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
 //        btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_btn);
         btnRemoveUser = findViewById(R.id.remove_user_btn);
         btnChangeDiet = findViewById(R.id.change_diet_btn);
+        btnMealRec = findViewById(R.id.diet_rec_btn);
 //        changeEmail = (Button) findViewById(R.id.changeEmail);
 //        changePassword = (Button) findViewById(R.id.changePass);
 //        sendEmail = (Button) findViewById(R.id.send);
@@ -374,6 +368,21 @@ public class ProfileActivity extends AppCompatActivity {
                 });
 
                 mPopupWindow.showAtLocation(findViewById(R.id.profileLayout), Gravity.CENTER,0,0);
+            }
+        });
+
+        btnMealRec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                oldEmail.setVisibility(View.GONE);
+//                newEmail.setVisibility(View.GONE);
+//                password.setVisibility(View.GONE);
+//                newPassword.setVisibility(View.VISIBLE);
+//                changeEmail.setVisibility(View.GONE);
+//                changePassword.setVisibility(View.VISIBLE);
+//                sendEmail.setVisibility(View.GONE);
+//                remove.setVisibility(View.GONE);
+                startActivity(new Intent(ProfileActivity.this, MealRecActivity.class));
             }
         });
 
