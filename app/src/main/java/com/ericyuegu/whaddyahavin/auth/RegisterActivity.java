@@ -101,14 +101,14 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
 
                                 } else {
-                                    Map<String, ArrayList<Object>> user = new HashMap<>();
-                                    user.put("meals", new ArrayList<Object>());
+                                    Map<String, String> diet = new HashMap<>();
+                                    diet.put("diet", "No Diet");
 
                                     FirebaseUser currentUser = auth.getCurrentUser();
 
                                     db.collection("users")
                                             .document(currentUser.getUid())
-                                            .set(user)
+                                            .set(diet)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void documentReference) {

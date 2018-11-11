@@ -20,9 +20,11 @@ import android.widget.ImageButton;
 import android.view.LayoutInflater;
 import android.widget.PopupWindow;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ericyuegu.whaddyahavin.auth.HomescreenActivity;
@@ -44,7 +46,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ericgu on 9/5/18.
@@ -52,7 +57,7 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity {
 
     private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnGoHome,
-            changeEmail, changePassword, sendEmail, remove, signOut;
+            changeEmail, changePassword, sendEmail, remove, signOut, btnChangeDiet;
 
     private EditText oldEmail, newEmail, password, newPassword;
     private ProgressBar progressBar;
@@ -105,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnChangePassword = findViewById(R.id.change_pass_btn);
 //        btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_btn);
         btnRemoveUser = findViewById(R.id.remove_user_btn);
+        btnChangeDiet = findViewById(R.id.change_diet_btn);
 //        changeEmail = (Button) findViewById(R.id.changeEmail);
 //        changePassword = (Button) findViewById(R.id.changePass);
 //        sendEmail = (Button) findViewById(R.id.send);
@@ -286,6 +292,83 @@ public class ProfileActivity extends AppCompatActivity {
 //            }
 //        });
 
+        btnChangeDiet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Initialize a new instance of LayoutInflater service
+                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                // Inflate the custom layout/view
+                final View customView = inflater.inflate(R.layout.activity_change_diet, null);
+
+                final PopupWindow mPopupWindow = new PopupWindow(
+                        customView,
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT
+                );
+
+                // Set an elevation value for popup window
+                // Call requires API level 21
+                if(Build.VERSION.SDK_INT>=21){
+                    mPopupWindow.setElevation(5.0f);
+                }
+
+                Button confirm = customView.findViewById(R.id.confirm);
+
+                // Get a reference for the custom view close button
+                final Spinner spinner = customView.findViewById(R.id.diet_spinner);
+                // Create an ArrayAdapter using the string array and a default spinner layout
+                final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.diets_array, android.R.layout.simple_spinner_item);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                spinner.setAdapter(adapter);
+
+                DocumentReference docRef = db.collection("users").document(user.getUid());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            System.out.println(task.getResult().get("diet"));
+                            String diet = task.getResult().get("diet").toString();
+                            setSpinnerValue(diet, spinner, adapter);
+                        } else {
+                            setSpinnerValue("No Diet", spinner, adapter); // default to no diet if didn't pull correctly
+                            Log.d("Failed", "get failed with ", task.getException());
+                        }
+                    }
+                });
+
+
+                confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String, String> diet = new HashMap<>();
+                        diet.put("diet", spinner.getSelectedItem().toString());
+
+                        db.collection("users")
+                                .document(user.getUid())
+                                .set(diet)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void documentReference) {
+                                    mPopupWindow.dismiss();
+                                    System.out.println("User was successfully added.");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        System.out.println("Error adding user.");
+                                    }
+                                });
+
+                    }
+                });
+
+                mPopupWindow.showAtLocation(findViewById(R.id.profileLayout), Gravity.CENTER,0,0);
+            }
+        });
+
         btnRemoveUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -393,6 +476,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setSpinnerValue(String diet, Spinner spinner, ArrayAdapter<CharSequence> adapter) {
+
+        int spinnerPosition = adapter.getPosition(diet); // set default value of spinner
+        spinner.setSelection(spinnerPosition);
+
+        return;
     }
 
     //sign out method
