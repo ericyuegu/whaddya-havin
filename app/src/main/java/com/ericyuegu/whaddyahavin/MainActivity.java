@@ -112,8 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 exitBtn = findViewById(R.id.exit_delete);
                 deleteBtn.setEnabled(true);
                 exitBtn.setEnabled(true);
-                deleteBtn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                exitBtn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+//                deleteBtn.setBackgroundColor(getResources().getColor(R.id./buttonstyle));
+                deleteBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle));
+                deleteBtn.setTextColor(getResources().getColor(R.color.white));
+//                exitBtn.setBackgroundColor(getResources().getColor(R.color.red));
+                exitBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle));
+                exitBtn.setTextColor(getResources().getColor(R.color.white));
 
                 deleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -158,8 +162,12 @@ public class MainActivity extends AppCompatActivity {
 
         deleteBtn.setEnabled(false);
         exitBtn.setEnabled(false);
-        deleteBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
-        exitBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
+//        deleteBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
+        deleteBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle4));
+        deleteBtn.setTextColor(getResources().getColor(R.color.black));
+//        exitBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
+        exitBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle4));
+        exitBtn.setTextColor(getResources().getColor(R.color.black));
         deleting = false;
     }
 

@@ -314,6 +314,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
                 Button confirm = customView.findViewById(R.id.confirm);
+                Button cancel = customView.findViewById(R.id.cancel);
 
                 // Get a reference for the custom view close button
                 final Spinner spinner = customView.findViewById(R.id.diet_spinner);
@@ -362,6 +363,13 @@ public class ProfileActivity extends AppCompatActivity {
                                     }
                                 });
 
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mPopupWindow.dismiss();
                     }
                 });
 
