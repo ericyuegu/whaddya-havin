@@ -31,8 +31,8 @@
                 android:hint="@string/hint_new_email"
                 android:textColorHighlight="@color/textHighlightColor"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/colorSecondary"
-                android:textColorHint="@color/colorSecondary"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:backgroundTint="@color/white"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -52,8 +52,8 @@
                 android:hint="@string/hint_email"
                 android:textColorHighlight="@color/textHighlightColor"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/colorSecondary"
-                android:textColorHint="@color/colorSecondary"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:backgroundTint="@color/white"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -66,14 +66,14 @@
         android:background="@color/colorPrimary">
 
         <Button
-            android:id="@+id/sign_up_button"
+            android:id="@+id/send_confirmation"
             style="?android:textAppearanceSmall"
             android:layout_width="400px"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="0dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/buttonstyle"
             android:fontFamily="sans-serif"
             android:text="@string/btn_send_email"
@@ -83,12 +83,12 @@
             />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/change_email_btn"
             android:layout_width="400px"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/sign_up_button"
-            android:layout_below="@+id/sign_up_button"
-            android:layout_marginTop="50dp"
+            android:layout_alignStart="@+id/send_confirmation"
+            android:layout_below="@+id/send_confirmation"
+            android:layout_marginTop="30dp"
             android:background="@drawable/buttonstyle2"
             android:text="@string/change_email"
             android:textAllCaps="false"

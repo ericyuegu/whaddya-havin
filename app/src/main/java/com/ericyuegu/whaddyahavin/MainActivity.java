@@ -112,8 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 exitBtn = findViewById(R.id.exit_delete);
                 deleteBtn.setEnabled(true);
                 exitBtn.setEnabled(true);
-                deleteBtn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                exitBtn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+//                deleteBtn.setBackgroundColor(getResources().getColor(R.id./buttonstyle));
+                deleteBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle));
+                deleteBtn.setTextColor(getResources().getColor(R.color.white));
+//                exitBtn.setBackgroundColor(getResources().getColor(R.color.red));
+                exitBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle));
+                exitBtn.setTextColor(getResources().getColor(R.color.white));
 
                 deleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -142,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteMeals() {
-        System.out.println("deleting meals");
         showAlert();
 
     }
@@ -159,8 +162,12 @@ public class MainActivity extends AppCompatActivity {
 
         deleteBtn.setEnabled(false);
         exitBtn.setEnabled(false);
-        deleteBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
-        exitBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
+//        deleteBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
+        deleteBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle4));
+        deleteBtn.setTextColor(getResources().getColor(R.color.black));
+//        exitBtn.setBackgroundColor(getResources().getColor(R.color.platinum));
+        exitBtn.setBackground(getResources().getDrawable(R.drawable.buttonstyle4));
+        exitBtn.setTextColor(getResources().getColor(R.color.black));
         deleting = false;
     }
 
@@ -218,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             final int intKey = key.intValue();
 
             db.collection("users")
-              .document(user.getEmail())
+              .document(user.getUid())
               .collection("meals")
               .document(strKey)
               .delete()
@@ -247,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void removeFromStorage(int mealNum) {
         StorageReference storageRef = storage.getReference();
-        StorageReference mealRef = storageRef.child(user.getEmail() + "-" + mealNum + ".jpeg");
+        StorageReference mealRef = storageRef.child(user.getUid() + "-" + mealNum + ".jpeg");
 
         mealRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -266,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayMeals() {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        CollectionReference docRef = db.collection("users").document(user.getEmail()).collection("meals");
+        CollectionReference docRef = db.collection("users").document(user.getUid()).collection("meals");
         Query query = docRef.orderBy("timestamp", Query.Direction.DESCENDING);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -309,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 6000L, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
 

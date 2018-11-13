@@ -77,18 +77,19 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
 
 
-            <Button style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="500px"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:id="@+id/savebtn"
-                android:background="@drawable/buttonstyle"
-                android:textColor="@color/white"
-                android:text="Save Meal"
-                android:textAllCaps="false"
-                android:fontFamily="sans-serif"
-                android:textSize="18dp"
-                />
+        <Button
+            android:id="@+id/savebtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="500px"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="75dp"
+            android:layout_marginRight="500dp"
+            android:background="@drawable/buttonstyle"
+            android:fontFamily="sans-serif"
+            android:text="Save Meal"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
     </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>

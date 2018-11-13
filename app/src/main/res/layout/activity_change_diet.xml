@@ -17,38 +17,51 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Are you sure you want to
-      Delete this account?"
+            android:text="Change your current diet."
             android:textSize="25dp"
             android:textColor="@color/black"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:id="@+id/diet_text"/>
+
+        <Spinner
+            android:id="@+id/diet_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/diet_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/buttonstyle"
-            android:text="@string/btn_cancel"
+            android:text="Confirm"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif"
-            android:id="@+id/cancel"/>
+            android:id="@+id/confirm"
+            android:layout_below="@id/diet_spinner"/>
 
         <Button
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="190dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/buttonstyle3"
-            android:text="@string/btn_delete_account"
+            android:text="Cancel"
             android:textAllCaps="false"
             android:textSize="18dp"
             android:textColor="@color/colorSecondary"
-            android:id="@+id/delete"/>
+            android:id="@+id/cancel"
+            android:layout_below="@id/diet_spinner"/>
+
+
 
     </RelativeLayout>
 

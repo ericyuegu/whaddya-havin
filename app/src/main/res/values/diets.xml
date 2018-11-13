@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="diets_array">
+        <item>No Diet</item>
+        <item>Vegetarian</item>
+        <item>Mediterranean</item>
+    </string-array>
+</resources>
