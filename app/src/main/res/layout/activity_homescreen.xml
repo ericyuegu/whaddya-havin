@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="235dp"
+        android:layout_height="300dp"
         android:contentDescription="Main Spring Roll"
         android:scaleX="1.2"
         android:scaleY="1.2"
@@ -19,6 +20,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/roboto_medium"
         android:paddingTop="10dp"
         android:text="Whaddya Havin?"
@@ -51,7 +53,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
         <TableRow
             android:layout_width="match_parent"
