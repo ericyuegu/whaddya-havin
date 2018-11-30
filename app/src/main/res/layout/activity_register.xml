@@ -118,28 +118,28 @@
             android:textColor="@android:color/white"
             android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sign_up_button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
-            android:text="or if you want...."
-            android:textColor="@color/colorPrimaryDark" />
+        <!--<TextView-->
+            <!--android:id="@+id/textView3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/sign_up_button"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="18dp"-->
+            <!--android:text="or if you want...."-->
+            <!--android:textColor="@color/colorPrimaryDark" />-->
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="530px"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/sign_up_button"
-            android:layout_below="@+id/sign_up_button"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/buttonstyle2"
-            android:text="Sign up with Facebook"
-            android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
-            android:textSize="18dp" />
+        <!--<Button-->
+            <!--android:id="@+id/button"-->
+            <!--android:layout_width="530px"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignStart="@+id/sign_up_button"-->
+            <!--android:layout_below="@+id/sign_up_button"-->
+            <!--android:layout_marginTop="50dp"-->
+            <!--android:background="@drawable/buttonstyle2"-->
+            <!--android:text="Sign up with Facebook"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textColor="@color/colorSecondary"-->
+            <!--android:textSize="18dp" />-->
 
         <TextView
             android:id="@+id/textView4"
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/sign_up_button"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="20dp"
             android:text="@string/terms"
             android:textColor="@color/colorPrimaryDark" />
 
