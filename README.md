@@ -1,4 +1,6 @@
-# Whaddya-havin Release Notes
+# Whaddya-havin 
+> An Android health app focused on photo-based food journaling
+# Release Notes
 ## New features for this release
 * Facebook login
 * Upload meal photos
