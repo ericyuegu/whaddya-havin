@@ -1,6 +1,3 @@
-# whaddya-havin
-An Android health app focused on photo-based food journaling.
-
 # Release Notes
 ## New features for this release
 * Facebook login
@@ -8,7 +5,7 @@ An Android health app focused on photo-based food journaling.
 * Create meal title
 
 ## Bug fixes made since the last release
-*Signing out of account correctly redirects to login screen
+* Signing out of account correctly redirects to login screen
 
 ## Known bugs and defects
 * There is no indication of what the main landing screen is inside the application when first logging in
