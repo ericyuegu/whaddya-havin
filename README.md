@@ -1,4 +1,4 @@
-# Release Notes
+# Whaddya-havin Release Notes
 ## New features for this release
 * Facebook login
 * Upload meal photos
