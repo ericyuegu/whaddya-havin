@@ -22,7 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:paddingLeft="5dp"
-            android:text="Change Password"
+            android:text="Change Email"
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="normal" />
