@@ -305,7 +305,6 @@ public class MainActivity extends AppCompatActivity {
     private void setNotification() {
         Calendar calendar = Calendar.getInstance();
 
-        System.out.println("abc123");
         calendar.set(Calendar.HOUR_OF_DAY, 20);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
