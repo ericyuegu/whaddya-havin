@@ -94,21 +94,19 @@
             android:text="or if you want...."
             android:textColor="@color/colorPrimaryDark"/>
 
-        <Button
-            style="?android:textAppearanceSmall"
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/facebook_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
             android:layout_below="@+id/btn_login"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:layout_marginLeft="75dp"
             android:layout_marginRight="75dp"
-            android:background="@drawable/buttonstyle2"
-            android:text="@string/sign_in_facebook"
-            android:textAllCaps="false"
-            android:textColor="@color/colorSecondary"
-            android:textSize="18dp" />
+        />
 
-    </RelativeLayout>
+</RelativeLayout>
 
 </LinearLayout>

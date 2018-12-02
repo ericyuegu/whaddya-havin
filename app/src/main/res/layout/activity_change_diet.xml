@@ -37,7 +37,7 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="25dp"
             android:background="@drawable/buttonstyle"
             android:text="Confirm"
             android:textAllCaps="false"
@@ -51,7 +51,7 @@
         <Button
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="190dp"
+            android:layout_marginHorizontal="185dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonstyle3"
             android:text="Cancel"
@@ -60,8 +60,6 @@
             android:textColor="@color/colorSecondary"
             android:id="@+id/cancel"
             android:layout_below="@id/diet_spinner"/>
-
-
 
     </RelativeLayout>
 

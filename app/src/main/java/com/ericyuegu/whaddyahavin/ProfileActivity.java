@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.ericyuegu.whaddyahavin.auth.HomescreenActivity;
 import com.ericyuegu.whaddyahavin.auth.LoginActivity;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -506,6 +508,10 @@ public class ProfileActivity extends AppCompatActivity {
     //sign out method
     public void signOut() {
         auth.signOut();
+        Toast.makeText(ProfileActivity.this, "You are logged out", Toast.LENGTH_SHORT).show();
+        LoginManager.getInstance().logOut();
+        startActivity(new Intent(ProfileActivity.this, HomescreenActivity.class));
+        finish();
     }
 
     @Override

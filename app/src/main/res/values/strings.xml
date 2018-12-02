@@ -70,4 +70,9 @@
 
     <!-- View meal -->
     <string name="meal_image">Image of meal taken by user</string>
+
+    <!-- Facebook login -->
+    <string name="facebook_app_id">1985768021503583</string>
+    <string name="fb_login_protocol_scheme">fb1985768021503583</string>
+
 </resources>
