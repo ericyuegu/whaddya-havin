@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.ericyuegu.whaddyahavin.auth.RegisterActivity"
+    android:title="W">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:background="@color/colorSecondary">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:paddingLeft="5dp"
+            android:text="Change Email"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="normal" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="140dp" >
+
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/hint_email"
+                android:textColorHighlight="@color/textHighlightColor"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="190dp">
+
+            <EditText
+                android:id="@+id/newemail"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/hint_new_email"
+                android:textColorHighlight="@color/textHighlightColor"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:background="@color/colorPrimary">
+
+        <Button
+            android:id="@+id/send_confirmation"
+            style="?android:textAppearanceSmall"
+            android:layout_width="550px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/buttonstyle"
+            android:fontFamily="sans-serif"
+            android:text="@string/btn_send_email"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="17dp" />
+
+        <Button
+            android:id="@+id/change_email_btn"
+            android:layout_width="550px"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/send_confirmation"
+            android:layout_below="@+id/send_confirmation"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttonstyle2"
+            android:text="@string/change_email"
+            android:textAllCaps="false"
+            android:textColor="@color/colorSecondary"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

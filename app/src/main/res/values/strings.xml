@@ -10,9 +10,10 @@
     <string name="title_activity_main">Whaddya Havin</string>
 
     <!-- Strings related to registration & login -->
-    <string name="action_login">Sign in or register</string>
+    <string name="action_login">Login</string>
     <string name="action_login_short">Register</string>
     <string name="login">Email</string>
+    <string name="sign_in_facebook">Sign in with Facebook</string>
     <string name="prompt_email">Enter email address!</string>
     <string name="prompt_password">Enter password!</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -24,12 +25,16 @@
     </string>
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
-    <string name="hint_email">Email</string>
+    <string name="hint_email"> Old Email</string>
+    <string name="terms">"By creating an acccount, I agree to the
+   Terms of Use and Sale and confirm
+    that I have read the Privacy Policy"</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
-    <string name="btn_login">LOGIN</string>
+    <string name="hint_name">Name</string>
+    <string name="btn_login">Login</string>
     <string name="btn_link_to_register">Not a member? Register now!</string>
     <string name="btn_link_to_login">Already registered. Log in here!</string>
+    <string name="register_sign_in"><u>Sign in</u></string>
 
     <!-- Strings related to take photo -->
     <string name="use_camera">Use Whaddya Havin\'s Camera</string>
@@ -42,14 +47,22 @@
     <string name="send_password_reset_email">Send Password reset email</string>
     <string name="remove_user">Remove user</string>
     <string name="new_pass">New Password</string>
+    <string name="reenter_pass">Re-Enter Password</string>
+    <string name="old_pass">Old Password</string>
     <string name="btn_forgot_password">Forgot your password?</string>
     <string name="btn_reset_password">Reset Password</string>
     <string name="btn_back"><![CDATA[<< Back]]></string>
     <string name="hint_new_email">New Email</string>
-    <string name="btn_change">Change</string>
+    <string name="btn_change_email">Change Email</string>
     <string name="btn_send">Send</string>
+    <string name="btn_send_email">Send Email Confirmation</string>
     <string name="btn_remove">Remove</string>
     <string name="btn_sign_out">Sign Out</string>
+    <string name="log_out_prompt">Are you sure you want to
+                Log out?</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_logout">Log Out</string>
+    <string name="btn_delete_account">Delete Account</string>
 
     <!-- Forgot password -->
     <string name="lbl_forgot_password">Forgot password?</string>
@@ -57,4 +70,9 @@
 
     <!-- View meal -->
     <string name="meal_image">Image of meal taken by user</string>
+
+    <!-- Facebook login -->
+    <string name="facebook_app_id">1985768021503583</string>
+    <string name="fb_login_protocol_scheme">fb1985768021503583</string>
+
 </resources>

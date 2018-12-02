@@ -32,10 +32,10 @@ public class ViewMealActivity extends AppCompatActivity {
             timestamp.setText(bundle.getString("timestamp"));
 
             TextView tags = this.findViewById(R.id.tags);
-            tags.setText("Tag: " + bundle.getString("tags"));
+            tags.setText(bundle.getString("tags"));
 
             TextView description = this.findViewById(R.id.description);
-            description.setText("Description: " + bundle.getString("description"));
+            description.setText(bundle.getString("description"));
 
             final ImageView mealImg = this.findViewById(R.id.meal_image);
 

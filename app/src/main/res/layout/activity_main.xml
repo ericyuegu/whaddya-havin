@@ -20,8 +20,59 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="520dp"
+        android:scrollbars="vertical" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/delete_meals"
+            style="?android:textAppearanceSmall"
+            android:layout_width="114dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/buttonstyle4"
+            android:enabled="false"
+            android:text="Delete Meals"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/exit_delete"
+            style="?android:textAppearanceSmall"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/delete_meals"
+            android:background="@drawable/buttonstyle4"
+            android:enabled="false"
+            android:text="Exit Delete"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/upload_photo"
+            style="?android:textAppearanceSmall"
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="142dp"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/delete_meals"
+            android:background="@drawable/buttonstyle"
+            android:text="Upload Photo"
+            android:textColor="@color/white" />
+
+
+    </RelativeLayout>
+
 
 </LinearLayout>

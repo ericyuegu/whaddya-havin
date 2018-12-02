@@ -6,33 +6,35 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To make network calls -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To use the camera -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.CAMERA"
+
+    <uses-feature
+        android:name="android.hardware.CAMERA"
         android:required="true" />
 
     <!-- To save photos on device in public external storage (accessible to user & other apps) -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".auth.LoginActivity"
-            android:label="Login"
+            android:name=".auth.HomescreenActivity"
+            android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,42 +42,74 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".auth.LoginActivity"
+            android:label="Login"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar"> -->
+        </activity>
+        <activity
             android:name=".auth.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SaveMealActivity"
             android:label="Save Meal"
-            android:theme="@style/AppTheme.ActionBar"
-            android:parentActivityName=".TakePhotoActivity" >
-        </activity>
+            android:parentActivityName=".TakePhotoActivity"
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
             android:name=".auth.ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".TakePhotoActivity"
             android:label="@string/title_activity_take_photo"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ViewMealActivity"
             android:label="@string/title_activity_view_meal"
-            android:theme="@style/AppTheme.ActionBar"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.ActionBar">
+            android:theme="@style/AppTheme.ActionBar"></activity>
+        <activity
+            android:name=".ChangeEmailActivity"
+            android:label="Change Email"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:label="Change Password"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MealRecActivity"
+            android:label="Meal Recommendation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
         </activity>
+
+
+        <receiver android:name=".Notification_reciever" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -84,9 +118,12 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

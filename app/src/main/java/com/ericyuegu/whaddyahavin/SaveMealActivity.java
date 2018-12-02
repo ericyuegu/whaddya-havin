@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -104,7 +107,15 @@ public class SaveMealActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
+            final String mealTitle = mealName.getText().toString().trim();
+
+            if (TextUtils.isEmpty(mealTitle)) {
+                Toast.makeText(getApplicationContext(), "Enter a meal title", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
                 uploadFile();
+            }
             }
         });
     }
@@ -137,7 +148,7 @@ public class SaveMealActivity extends AppCompatActivity {
     // saving the file on firebase - database and storage
     private void uploadFile() {
 
-        CollectionReference docRef = db.collection("users").document(user.getEmail()).collection("meals");
+        CollectionReference docRef = db.collection("users").document(user.getUid()).collection("meals");
         docRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -146,7 +157,21 @@ public class SaveMealActivity extends AppCompatActivity {
                     System.out.println(query);
 
                     if (query != null) {
-                        final int mealNum = query.getDocuments().size();
+                        int numMeals = query.getDocuments().size();
+                        int maxMealNum = 0;
+
+                        if (numMeals > 0) { // meals have been added (and possibly deleted)
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                if (Integer.parseInt(document.get("mealNum").toString()) > maxMealNum) {
+                                    maxMealNum = Integer.parseInt(document.get("mealNum").toString());
+                                }
+                            }
+                            maxMealNum++; // increment to be next meal key
+                        }
+
+                        final String strNext = Integer.toString(maxMealNum);
+                        System.out.println(strNext);
 
                         HashMap<String, String> uploadMeal = new HashMap<>();
                         uploadMeal.put("mealName", mealName.getText().toString());
@@ -154,19 +179,20 @@ public class SaveMealActivity extends AppCompatActivity {
                         String currentDateandTime = sdf.format(new Date());
                         uploadMeal.put("timestamp", currentDateandTime);
                         uploadMeal.put("tags", mealTags.getText().toString());
-                        uploadMeal.put("photoUrl", user.getEmail() + "-" + mealNum + ".jpeg");
+                        uploadMeal.put("photoUrl", user.getUid() + "-" + strNext + ".jpeg");
                         uploadMeal.put("description", mealDesc.getText().toString());
+                        uploadMeal.put("mealNum", strNext);
 
                         db.collection("users")
-                                .document(user.getEmail())
+                                .document(user.getUid())
                                 .collection("meals")
-                                .document(Integer.toString(mealNum))
+                                .document(strNext)
                                 .set(uploadMeal)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void documentReference) {
                                         System.out.println("Meal was successfully added.");
-                                        uploadToStorage(mealNum);
+                                        uploadToStorage(strNext);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -185,9 +211,9 @@ public class SaveMealActivity extends AppCompatActivity {
 
     }
 
-    public void uploadToStorage(int mealNum) {
+    public void uploadToStorage(String mealNum) {
         StorageReference storageRef = storage.getReference();
-        StorageReference mealRef = storageRef.child(user.getEmail() + "-" + mealNum + ".jpeg");
+        StorageReference mealRef = storageRef.child(user.getUid() + "-" + mealNum + ".jpeg");
 
         Bundle bundle = getIntent().getExtras();
         byte[] bytes = (byte[]) bundle.get("photo_uri");
@@ -201,8 +227,6 @@ public class SaveMealActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
                 System.out.println("Success: " + taskSnapshot.getMetadata());
                 startActivity(new Intent(SaveMealActivity.this, MainActivity.class));
             }
@@ -213,41 +237,5 @@ public class SaveMealActivity extends AppCompatActivity {
                 progressBar.setProgress((int)progress);
             }
         });
-
-
-//        StorageReference fileReference = mStorageref.child(System.currentTimeMillis()
-//                + "." + getFileExtension(mImageUri));
-//        fileReference.putFile(mImageUri)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                progressBar.setProgress(0);
-//                            }
-//                        }, 5000);
-//                        Toast.makeText(SaveMealActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-//                        ArrayList<String> tags = new ArrayList<>(Arrays.asList("Carbs", "Sugar"));
-//                        Meal m = new Meal(mealName.getText().toString().trim(), "", tags,
-//                                taskSnapshot.getUploadSessionUri().toString(), mealDesc.getText().toString());
-//                        String uploadId = mDatabaseref.push().getKey();
-//                        mDatabaseref.child(uploadId).setValue(m);
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(SaveMealActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-//                        progressBar.setProgress((int)progress);
-//                    }
-//                });
     }
 }
