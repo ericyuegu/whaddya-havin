@@ -76,7 +76,7 @@
 Android Developer Documentation - Build and run your app](https://developer.android.com/studio/run/)
 
 ### Database:
-* Account management and file storage is currently handled through Firebase—for access, email project point of contact: eric.yue.gu@gmail.com
+* Account management and file storage is currently handled through Firebase—for access, email project point of contact: eric DOT yue DOT gu AT gmail.com
 * Alternatively, to replace with your own Firebase project, use Firebase Assistant in Android Studio or follow the instructions at [Firebase Documentation - Add Firebase to Your Android Project](https://firebase.google.com/docs/android/setup)
 
 ### Troubleshooting:
